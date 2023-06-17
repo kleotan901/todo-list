@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task List Home</h1>
+  <p>Welcome to Todo List!</p>
+  <h2> Tasks </h2>
+  <p>The Task List has the following record counts:</p>
+  <ul>
+    <li><strong>Tasks:</strong> {{ task_list }}</li>
+    <li><strong>Tags:</strong> {{ tags }}</li>
+  </ul>
+
+{% endblock %}
