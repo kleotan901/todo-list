@@ -1,5 +1,5 @@
+import datetime as datetime
 from django.db import models
-from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -11,8 +11,8 @@ class Tag(models.Model):
 
 class Task(models.Model):
     content = models.CharField(max_length=255)
-    datetime = models.DateTimeField(auto_created=True)
-    deadline = models.DateTimeField(blank=True)
+    datetime = models.DateTimeField()
+    deadline = models.DateTimeField(blank=True, null=True)
     is_completed = models.BooleanField(default=False)
     tags = models.ManyToManyField(
         Tag,
