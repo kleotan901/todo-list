@@ -1,13 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Task List Home</h1>
-  <p>Welcome to Todo List!</p>
-  <h2> Tasks </h2>
-  <p>The Task List has the following record counts:</p>
-  <ul>
-    <li><strong>Tasks:</strong> {{ task_list }}</li>
-    <li><strong>Tags:</strong> {{ tags }}</li>
-  </ul>
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>TODO list</h1>
+    </div>
+    <div class="col-sm-4">
+      <a href="#" class="btn btn-primary">Add task</a>
+    </div>
+  </div>
 
+
+<div class="row">
+{% for task in task_list %}
+
+  <div class="col-sm-8">
+    <ul>
+      <li>
+        <strong>{{ task.content }}</strong>
+        {% if task.is_completed %}
+          <span class="task-status-done">Done</span>
+        {% else %}
+          <span class="task-status-notdone">Not done</span>
+        {% endif %}
+      </li>
+      <li>
+        <em>Created: {{ task.datetime }}</em>
+        <em>Deadline: {{ task.deadline }}</em>
+      </li>
+      <li>
+        Tags: {% for tag in task.tags.all %} {{ tag.name }} {% endfor %}
+        <a href="#">Update</a>
+        <a href="#">Delete</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-sm-4">
+    {% if task.is_completed == False %}
+      <a href="#" class="btn btn-success">Complete</a>
+    {% else %}
+      <a href="#" class="btn btn-info">Undo</a>
+    {% endif %}
+  </div>
+
+{% endfor %}
+</div>
 {% endblock %}
