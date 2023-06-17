@@ -8,6 +8,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Task(models.Model):
     content = models.CharField(max_length=255)
     datetime = models.DateTimeField(auto_created=True)
