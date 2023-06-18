@@ -31,7 +31,7 @@
       <li>
         Tags: {% for tag in task.tags.all %} {{ tag.name }} {% endfor %}
         <a href="{% url 'task-list:task-update' pk=task.id %}">Update</a>
-        <a href="#">Delete</a>
+        <a href="{% url 'task-list:task-delete' pk=task.id %}"">Delete</a>
       </li>
     </ul>
   </div>
