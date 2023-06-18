@@ -9,6 +9,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("task-list:tag-list")
+
 
 class Task(models.Model):
     content = models.CharField(max_length=255)
