@@ -38,10 +38,17 @@
 
   <div class="col-sm-4">
     {% if task.is_completed == False %}
-      <a href="#" class="btn btn-success">Complete</a>
+      <form action="{% url 'task-list:task-change-status' pk=task.pk %}" method="post">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-success">Complete</button>
+      </form>
     {% else %}
-      <a href="#" class="btn btn-info">Undo</a>
+        <form action="{% url 'task-list:task-change-status' pk=task.pk %}" method="post">
+          {% csrf_token %}
+           <button type="submit" class="btn btn-info">Undo</button>
+        </form>
     {% endif %}
+
   </div>
 
 {% endfor %}
