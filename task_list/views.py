@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -16,6 +18,16 @@ class HomePage(generic.ListView):
         context["tags"] = Tag.objects.all()
         return context
 
+
+class ChangeTaskStatus(generic.View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        task.is_completed = not task.is_completed
+        task.save()
+        return HttpResponseRedirect(reverse_lazy("task-list:index"))
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponseBadRequest("Invalid request method.")
 
 class TaskCreateView(generic.CreateView):
     model = Task
