@@ -1,5 +1,6 @@
 import datetime as datetime
 from django.db import models
+from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -23,3 +24,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.content
+
+    def get_absolute_url(self):
+        return reverse("task-list:index")
