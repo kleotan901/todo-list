@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_list.forms import TaskForm
+from task_list.forms import TaskForm, TagForm
 from task_list.models import Task, Tag
 
 
@@ -42,3 +42,19 @@ class TaskUpdateView(generic.UpdateView):
 class TaskDeleteView(generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task-list:index")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    form_class = TagForm
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    form_class = TagForm
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("task-list:tag-list")
