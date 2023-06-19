@@ -21,3 +21,9 @@ em{
     color: darkgreen;
     font-weight: bold;
 }
+.delete-confirmation{
+    display: inline-flex;
+}
+.btn-danger{
+    margin-right: 30px;
+}

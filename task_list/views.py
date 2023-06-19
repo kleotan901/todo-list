@@ -1,6 +1,9 @@
+import datetime
+
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.dateparse import parse_datetime
 from django.views import generic
 
 from task_list.forms import TaskForm, TagForm
@@ -11,11 +14,14 @@ class HomePage(generic.ListView):
     template_name = "task_list/index.html"
     queryset = Task.objects.all()
     context_object_name = "task_list"
-    ordering = ["is_completed"]
+    ordering = ["is_completed", "-datetime"]
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
-        context["tags"] = Tag.objects.all()
+        for task in context["task_list"]:
+            task.datetime = task.datetime.strftime("%B %d, %Y, %I:%M %p")
+            if task.deadline:
+                task.deadline = task.deadline.strftime("%B %d, %Y, %I:%M %p")
         return context
 
 
