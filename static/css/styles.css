@@ -1,0 +1,29 @@
+body {
+    margin-top: 20px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+ul{
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+li{
+    padding-bottom: 10px;
+}
+em{
+    font-size: 14px;
+}
+.task-status-notdone{
+    color: darkred;
+    font-weight: bold;
+}
+.task-status-done{
+    color: darkgreen;
+    font-weight: bold;
+}
+.delete-confirmation{
+    display: inline-flex;
+}
+.btn-danger{
+    margin-right: 30px;
+}
