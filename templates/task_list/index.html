@@ -6,7 +6,7 @@
       <h2>TODO list</h2>
     </div>
     <div class="col-sm-4">
-      <a href="{% url 'task-list:task-create' %}" class="btn btn-primary">Add task</a>
+      <a href="{% url 'task_list:task-create' %}" class="btn btn-primary">Add task</a>
     </div>
   </div>
 
@@ -32,20 +32,20 @@
       </li>
       <li>
         Tags: {% for tag in task.tags.all %} {{ tag.name }} {% endfor %}
-        <a href="{% url 'task-list:task-update' pk=task.id %}">Update</a>
-        <a href="{% url 'task-list:task-delete' pk=task.id %}"">Delete</a>
+        <a href="{% url 'task_list:task-update' pk=task.id %}">Update</a>
+        <a href="{% url 'task_list:task-delete' pk=task.id %}"">Delete</a>
       </li>
     </ul>
   </div>
 
   <div class="col-sm-4">
     {% if task.is_completed == False %}
-      <form action="{% url 'task-list:task-change-status' pk=task.pk %}" method="post">
+      <form action="{% url 'task_list:task-change-status' pk=task.pk %}" method="post">
         {% csrf_token %}
           <button type="submit" class="btn btn-success">Complete</button>
       </form>
     {% else %}
-        <form action="{% url 'task-list:task-change-status' pk=task.pk %}" method="post">
+        <form action="{% url 'task_list:task-change-status' pk=task.pk %}" method="post">
           {% csrf_token %}
            <button type="submit" class="btn btn-info">Undo</button>
         </form>

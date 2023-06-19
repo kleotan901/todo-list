@@ -24,4 +24,4 @@ urlpatterns = [
     path("tags/<int:pk>/delete/", TagDeleteView.as_view(), name="tag-delete"),
 ]
 
-app_name = "task-list"
+app_name = "task_list"

@@ -30,7 +30,7 @@ class ChangeTaskStatus(generic.View):
         task = get_object_or_404(Task, pk=pk)
         task.is_completed = not task.is_completed
         task.save()
-        return HttpResponseRedirect(reverse_lazy("task-list:index"))
+        return HttpResponseRedirect(reverse_lazy("task_list:index"))
 
     def get(self, request, *args, **kwargs):
         return HttpResponseBadRequest("Invalid request method.")
@@ -38,7 +38,7 @@ class ChangeTaskStatus(generic.View):
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("task-list:index")
+    success_url = reverse_lazy("task_list:index")
 
 
 class TaskUpdateView(generic.UpdateView):
@@ -47,7 +47,7 @@ class TaskUpdateView(generic.UpdateView):
 
 class TaskDeleteView(generic.DeleteView):
     model = Task
-    success_url = reverse_lazy("task-list:index")
+    success_url = reverse_lazy("task_list:index")
 
 
 class TagListView(generic.ListView):
@@ -63,4 +63,4 @@ class TagUpdateView(generic.UpdateView):
 
 class TagDeleteView(generic.DeleteView):
     model = Tag
-    success_url = reverse_lazy("task-list:tag-list")
+    success_url = reverse_lazy("task_list:tag-list")
